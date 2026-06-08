@@ -4,11 +4,10 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from tqdm import tqdm
 
-# --- CẤU HÌNH ĐƯỜNG DẪN GỐC ---
+
 ROOT_DIR = r'D:\Python\Rail\NEU-DET' 
 
 def convert_all_folders():
-    # Danh sách các thư mục cần xử lý
     folders = ['train', 'val']
     
     for folder_name in folders:
@@ -18,7 +17,6 @@ def convert_all_folders():
         xml_dir = os.path.join(current_base, 'annotations')
         mask_out_dir = os.path.join(current_base, 'masks')
 
-        # 1. Kiểm tra thư mục XML có tồn tại không
         if not os.path.exists(xml_dir):
             print(f"BỎ QUA: Không tìm thấy thư mục {xml_dir}")
             continue
@@ -26,7 +24,6 @@ def convert_all_folders():
         if not os.path.exists(mask_out_dir):
             os.makedirs(mask_out_dir)
 
-        # 2. Lấy danh sách file XML
         xml_files = [f for f in os.listdir(xml_dir) if f.endswith('.xml')]
         
         for xml_file in tqdm(xml_files, desc=f"Converting {folder_name}"):
